@@ -1,0 +1,29 @@
+.item {
+    padding: 12px 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.text {
+    font-family: 'Inter';
+    letter-spacing: -0.006em;
+    color: #000000;
+
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+}

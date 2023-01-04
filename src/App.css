@@ -1,0 +1,176 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    background: #F5F5F5;
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjusst: 100%;
+    -moz-text-size-adjusst: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input:-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:-moz-focus-innesr {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: 400;
+}
+
+
+
+
+.wrapper {
+    max-width: 456px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 68px;
+    color: #000000;
+    margin-bottom: 34px;
+}
+
+.block {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 32px;
+    min-height: 300px;
+    background: #ffff;
+    border-radius: 12px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-bottom: 11px;
+
+}
+
+.input {
+    background: #FFFFFF;
+    border: 1px solid #E5E9EB;
+    border-radius: 6px;
+    padding: 0 16px;
+}
+
+.addButton {
+    min-height: 40px;
+    background: #4094F7;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #F6F8F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+}
+
+.addButton:active {
+    position: relative;
+    top: 2px;
+}
+
+.tasks {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 11px;
+}
+
+
+
+.done {}
+
+.delete {}
+
+.clear {
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    width: 100px;
+    letter-spacing: -0.006em;
+    color: #0E73F6;
+}
+
+.clear:active {
+    position: relative;
+    top: 2px;
+}
