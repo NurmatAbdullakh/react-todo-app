@@ -1,43 +1,45 @@
+import { useState } from "react";
 import "./App.css";
 import Task from "./components/Task/Task";
 import { Title } from "./components/Title/Title";
 
 function App() {
-  const todoList = [
-    {
-      task: "Do homwork",
-      isDone: false,
-    },
-    {
-      task: "Read Book",
-      isDone: true,
-    },
-    {
-      task: "Play football",
-      isDone: false,
-    },
-  ];
+  const [todoList, setTodoList] = useState([]);
 
-  const TaskElems = todoList.map((item, index, array) => {
+  const TaskElems = todoList.map((item) => {
     return <Task text={item.task} isDone={item.isDone} />;
   });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(event.target.elements["task"].value);
+    setTodoList((prev) => {
+      return [
+        { task: event.target.elements["task"].value, isDone: false },
+        ...prev,
+      ];
+    });
+  };
+
   return (
-    <>
-      <div class="wrapper">
-        <Title />
-        <div class="block">
-          <div class="form">
-            <input type="text" class="input" placeholder="Text input" />
-            <button type="button" class="addButton">
-              Add
-            </button>
-          </div>
-          <ul class="tasks">{TaskElems}</ul>
-          <span class="clear">Clear all</span>
-        </div>
+    <div className="wrapper">
+      <Title>To Do list APP</Title>
+      <div className="block">
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            name="task"
+            type="text"
+            className="input"
+            placeholder="Text input"
+          />
+          <button type="submit" className="addButton">
+            Add
+          </button>
+        </form>
+        <ul className="tasks">{TaskElems}</ul>
+        <span className="clear">Clear all</span>
       </div>
-    </>
+    </div>
   );
 }
 

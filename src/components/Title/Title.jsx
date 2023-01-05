@@ -1,5 +1,5 @@
 import styles from "./Title.module.css";
 
-export const Title = () => {
-  return <div class={styles.text}>To Do list APP</div>;
+export const Title = ({ children }) => {
+  return <div className={styles.text}>{children}</div>;
 };
