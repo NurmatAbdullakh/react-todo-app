@@ -86,9 +86,6 @@ h6 {
     font-weight: 400;
 }
 
-
-
-
 .wrapper {
     max-width: 456px;
     position: absolute;
@@ -97,14 +94,7 @@ h6 {
     transform: translate(-50%, -50%);
 }
 
-.title {
-    font-family: 'Inter';
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 68px;
-    color: #000000;
-    margin-bottom: 34px;
-}
+
 
 .block {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

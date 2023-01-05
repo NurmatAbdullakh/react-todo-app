@@ -1,5 +1,6 @@
 import "./App.css";
 import Task from "./components/Task/Task";
+import { Title } from "./components/Title/Title";
 
 function App() {
   const todoList = [
@@ -18,13 +19,13 @@ function App() {
   ];
 
   const TaskElems = todoList.map((item, index, array) => {
-    return <Task text={item.task} isDone={item.isDone}/>;
+    return <Task text={item.task} isDone={item.isDone} />;
   });
 
   return (
     <>
       <div class="wrapper">
-        <div class="title">To Do list APP</div>
+        <Title />
         <div class="block">
           <div class="form">
             <input type="text" class="input" placeholder="Text input" />

@@ -1,13 +1,13 @@
 import { DeleteIcon, PenIcon } from "../../images/icons";
-import "./Task.css";
+import styles from "./Task.module.css";
 
 function Task({ text, isDone }) {
-  const textClass = isDone ? "text done" : "text";
+  const textClass = isDone ? ` ${styles.text} ${styles.done}` : styles.text;
 
   return (
-    <li class="item">
-      <span class={textClass}>{text}</span>
-      <div class="buttons">
+    <li className={styles.item}>
+      <span className={textClass}>{text}</span>
+      <div className={styles.buttons}>
         <DeleteIcon />
         <PenIcon />
       </div>
