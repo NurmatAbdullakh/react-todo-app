@@ -9,16 +9,33 @@ function App() {
   const TaskElems = todoList.map((item) => {
     return <Task text={item.task} isDone={item.isDone} />;
   });
+  const addNewTaskToList = (newTask) => {
+    setTodoList((prev) => {
+      return [{ task: newTask, isDone: false }, ...prev];
+    });
+  };
+
+  const formatTaskForValidate = (task) =>
+    task.replaceAll(" ", "").toLowerCase();
+
+  const isHasTaskInList = (newTask) => {
+    return todoList.find(
+      (v) => formatTaskForValidate(v.task) === formatTaskForValidate(newTask)
+    );
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.elements["task"].value);
-    setTodoList((prev) => {
-      return [
-        { task: event.target.elements["task"].value, isDone: false },
-        ...prev,
-      ];
-    });
+    const newTask = event.target.elements["task"].value;
+
+    if (isHasTaskInList(newTask)) {
+      alert("already has exist task");
+    } else if (!newTask) {
+      alert("Please enter anything to field");
+    } else {
+      addNewTaskToList(newTask);
+      event.target.elements["task"].value = "";
+    }
   };
 
   return (
