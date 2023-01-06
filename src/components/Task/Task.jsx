@@ -8,8 +8,8 @@ function Task({ text, isDone }) {
     <li className={styles.item}>
       <span className={textClass}>{text}</span>
       <div className={styles.buttons}>
-        <DeleteIcon />
         <PenIcon />
+        <DeleteIcon />
       </div>
     </li>
   );
