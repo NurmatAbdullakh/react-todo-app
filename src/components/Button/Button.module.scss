@@ -1,0 +1,30 @@
+.addButton {
+    min-height: 40px;
+    
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    color: #F6F8F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    &.completed {
+            background: #33eb91;
+        }
+    
+        &.processing {
+            background: #ffea00;
+        }
+    
+        &.all {
+            background: #4094F7;
+        }
+}
+
+
+.addButton:active {
+    position: relative;
+    top: 2px;
+}
