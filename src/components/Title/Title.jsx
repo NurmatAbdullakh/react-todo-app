@@ -1,5 +1,10 @@
+import { memo } from "react";
 import styles from "./Title.module.css";
 
-export const Title = ({ children }) => {
+const Title = ({ children }) => {
+  console.log("title is rendering");
   return <div className={styles.text}>{children}</div>;
 };
+
+
+export default memo(Title)
