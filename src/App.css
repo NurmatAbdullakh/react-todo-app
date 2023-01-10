@@ -148,12 +148,3 @@ h6 {
     position: relative;
     top: 2px;
 }
-.typesBtn{
-    padding: 40px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-}

@@ -1,13 +1,32 @@
-import { useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
+import { ButtonGroup } from "./components/ButtonGroup/ButtonGroup";
 import Task from "./components/Task/Task";
 import Title from "./components/Title/Title";
+import { Context } from "./utils/context";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [type, setType] = useState("all");
   const [value, setValue] = useState("");
+  const statusButtons = [
+    {
+      type: "all",
+      title: "All",
+      count: todoList.length,
+    },
+    {
+      type: "completed",
+      title: "Completed",
+      count: todoList.filter((v) => v.isDone).length,
+    },
+    {
+      type: "processing",
+      title: "Processing",
+      count: todoList.filter((v) => !v.isDone).length,
+    },
+  ];
 
   const addNewTaskToList = (newTask) => {
     setTodoList((prev) => {
@@ -80,38 +99,32 @@ function App() {
     [todoList, type]
   );
 
+  const state = { setType, statusButtons };
+
   return (
-    <div className="wrapper">
-      <Title>To Do list APP</Title>
-      <div className="block">
-        <div>date : {today}</div>
-        <form className="form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={value}
-            onChange={(event) => setValue(event.target.value)}
-            className="input"
-            placeholder="Text input"
-          />
-          <Button type="all">Add</Button>
-        </form>
-        <ul className="tasks">{TaskElems}</ul>
-        <span onClick={clearAll} className="clear">
-          Clear all
-        </span>
-        <div className="typesBtn">
-          <Button type="all" handleClick={() => setType("all")}>
-            All:{todoList.length}
-          </Button>
-          <Button type="completed" handleClick={() => setType("completed")}>
-            Completed:{todoList.filter((v) => v.isDone).length}
-          </Button>
-          <Button type="processing" handleClick={() => setType("processing")}>
-            Processing:{todoList.filter((v) => !v.isDone).length}
-          </Button>
+    <Context.Provider value={state}>
+      <div className="wrapper">
+        <Title>To Do list APP</Title>
+        <div className="block">
+          <div>date : {today}</div>
+          <form className="form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+              className="input"
+              placeholder="Text input"
+            />
+            <Button type="all">Add</Button>
+          </form>
+          <ul className="tasks">{TaskElems}</ul>
+          <span onClick={clearAll} className="clear">
+            Clear all
+          </span>
+          <ButtonGroup />
         </div>
       </div>
-    </div>
+    </Context.Provider>
   );
 }
 
