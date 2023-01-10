@@ -1,0 +1,13 @@
+.clear {
+    display: inline-block;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    width: 100px;
+    letter-spacing: -0.006em;
+    color: #0E73F6;
+    &:active {
+            position: relative;
+            top: 2px;
+    }
+}

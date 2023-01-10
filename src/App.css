@@ -97,54 +97,5 @@ h6 {
 
 
 
-.block {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: 32px;
-    min-height: 300px;
-    background: #ffff;
-    border-radius: 12px;
-}
-
-.form {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    margin-bottom: 11px;
-
-}
-
-.input {
-    background: #FFFFFF;
-    border: 1px solid #E5E9EB;
-    border-radius: 6px;
-    padding: 0 16px;
-}
 
 
-
-.tasks {
-    display: grid;
-    gap: 12px;
-    margin-bottom: 11px;
-}
-
-
-
-.done {}
-
-.delete {}
-
-.clear {
-    display: inline-block;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
-    width: 100px;
-    letter-spacing: -0.006em;
-    color: #0E73F6;
-}
-
-.clear:active {
-    position: relative;
-    top: 2px;
-}

@@ -1,8 +1,12 @@
 import { createContext, useMemo, useState } from "react";
 import "./App.css";
+import { Block } from "./components/Block/Block";
 import Button from "./components/Button/Button";
 import { ButtonGroup } from "./components/ButtonGroup/ButtonGroup";
+import { Clear } from "./components/Clear/Clear";
+import Form from "./components/Form/Form";
 import Task from "./components/Task/Task";
+import Tasks from "./components/Tasks/Tasks";
 import Title from "./components/Title/Title";
 import { Context } from "./utils/context";
 
@@ -84,45 +88,35 @@ function App() {
     }
   });
 
-  const TaskElems = useMemo(
-    () =>
-      filteredListByType.map((item) => {
-        return (
-          <Task
-            handleDelete={deleteByTask}
-            handleDone={changeStatus}
-            text={item.task}
-            isDone={item.isDone}
-          />
-        );
-      }),
-    [todoList, type]
-  );
-
-  const state = { setType, statusButtons };
+  const state = {
+    setType,
+    statusButtons,
+    clearAll,
+    filteredListByType,
+    deleteByTask,
+    changeStatus,
+    todoList,
+    type,
+    handleSubmit,
+    value,
+    setValue,
+  };
 
   return (
     <Context.Provider value={state}>
       <div className="wrapper">
         <Title>To Do list APP</Title>
-        <div className="block">
+        <Block>
+          {/* Date */}
           <div>date : {today}</div>
-          <form className="form" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
-              className="input"
-              placeholder="Text input"
-            />
-            <Button type="all">Add</Button>
-          </form>
-          <ul className="tasks">{TaskElems}</ul>
-          <span onClick={clearAll} className="clear">
-            Clear all
-          </span>
+          {/* Form */}
+          <Form />
+          {/* Tasks */}
+          <Tasks />
+          {/* Clear */}
+          <Clear />
           <ButtonGroup />
-        </div>
+        </Block>
       </div>
     </Context.Provider>
   );
