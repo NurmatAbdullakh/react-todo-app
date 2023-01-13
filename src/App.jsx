@@ -1,4 +1,5 @@
 import { createContext, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import { Block } from "./components/Block/Block";
 import Button from "./components/Button/Button";
@@ -8,65 +9,60 @@ import Form from "./components/Form/Form";
 import Task from "./components/Task/Task";
 import Tasks from "./components/Tasks/Tasks";
 import Title from "./components/Title/Title";
+import { addItemActionCreator, changeStatusActionCreator, clearAllActionCreator, deleteItemActionCreator } from "./redux/todoReducer";
 import { Context } from "./utils/context";
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const todos = useSelector(state => state.todo.list)
+  const dispatch = useDispatch()
   const [type, setType] = useState("all");
   const [value, setValue] = useState("");
   const statusButtons = [
     {
       type: "all",
       title: "All",
-      count: todoList.length,
+      count: todos.length,
     },
     {
       type: "completed",
       title: "Completed",
-      count: todoList.filter((v) => v.isDone).length,
+      count: todos.filter((v) => v.isDone).length,
     },
     {
       type: "processing",
       title: "Processing",
-      count: todoList.filter((v) => !v.isDone).length,
+      count: todos.filter((v) => !v.isDone).length,
     },
   ];
+  // ===========================TODO LIST ACTIONS==============
+  const clearAll = () => {
+    dispatch(clearAllActionCreator())
+  };
+  const changeStatus = (task) => {
+    dispatch(changeStatusActionCreator(task))
+  };
+  const deleteByTask = (task) => {
+    dispatch(deleteItemActionCreator(task))
+  };
+  // =========================== UTILS ==============
+  const formatTaskForValidate = (task) =>
+    task.replaceAll(" ", "").toLowerCase();
 
-  const addNewTaskToList = (newTask) => {
-    setTodoList((prev) => {
-      return [{ task: newTask, isDone: false }, ...prev];
-    });
+  const isHasTaskInList = (newTask) => {
+    return todos.find(
+      (v) => formatTaskForValidate(v.task) === formatTaskForValidate(newTask)
+    );
   };
   const dateFormatter = (d) => {
     console.log("formatter is working");
     return d.getDate() + "-" + d.getMonth() + 1 + "-" + d.getFullYear();
   };
-
   const today = useMemo(
     () => dateFormatter(new Date()),
     [new Date().getDate()]
   );
 
-  const clearAll = () => {
-    setTodoList([]);
-  };
-  const changeStatus = (task) => {
-    setTodoList(
-      todoList.map((v) => (v.task === task ? { ...v, isDone: !v.isDone } : v))
-    );
-  };
-  const deleteByTask = (task) => {
-    setTodoList(todoList.filter((el) => el.task !== task));
-  };
-  const formatTaskForValidate = (task) =>
-    task.replaceAll(" ", "").toLowerCase();
-
-  const isHasTaskInList = (newTask) => {
-    return todoList.find(
-      (v) => formatTaskForValidate(v.task) === formatTaskForValidate(newTask)
-    );
-  };
-
+  // =========================== SUBMIT ==============
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isHasTaskInList(value)) {
@@ -74,11 +70,12 @@ function App() {
     } else if (!value) {
       alert("Please enter anything to field");
     } else {
-      addNewTaskToList(value);
+      dispatch(addItemActionCreator(value))
       setValue("");
     }
   };
-  const filteredListByType = todoList.filter((el) => {
+  // =========================== filteredListByType ==============
+  const filteredListByType = todos.filter((el) => {
     if (type === "all") {
       return true;
     } else if (type === "completed") {
@@ -95,7 +92,7 @@ function App() {
     filteredListByType,
     deleteByTask,
     changeStatus,
-    todoList,
+    todos,
     type,
     handleSubmit,
     value,
@@ -111,10 +108,10 @@ function App() {
           <div>date : {today}</div>
           {/* Form */}
           <Form />
-          {/* Tasks */}
-          <Tasks />
           {/* Clear */}
           <Clear />
+          {/* Tasks */}
+          <Tasks />
           <ButtonGroup />
         </Block>
       </div>
